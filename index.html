@@ -28,7 +28,7 @@
             </div>
             <div class="form__buttons">
                 <button type="button" id="signup" class="buttons__main">Sign up</button>
-                <button class="buttons__secondary">or <span>Log in</span></button>
+                <button class="buttons__secondary" id="signupSecondary">or <span>Log in</span></button>
             </div>
         </form>
     </div>
@@ -42,16 +42,22 @@
             
             <div class="form__buttons">
                 <button class="buttons__main" id="login">Log in</button>
-                <button class="buttons__secondary">or <span>Sign up</span></button>
+                <button class="buttons__secondary" id="loginSecondary">or <span>Sign up</span></button>
             </div>
         </form>    
     </div>
         <main class="users display__none" id="users">
             
         </main>
-        <section class="post display__none">
+        <div class="popup-container">
 
-        </section>
+            <section class="profile display__none" id="profile">
+                
+            </section>
+            <section class="posts display__none" id="posts">
+                
+            </section>
+        </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>

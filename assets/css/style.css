@@ -7,9 +7,10 @@ body {
     width: 100%;
     height: 1000px;
     background-color: white;
-    display: block;
+    display: flex;
     position: absolute;
     z-index: 3;
+    justify-content: center;
 }
 
 .login__wrapper {
@@ -19,10 +20,13 @@ body {
     display: block;
     position: absolute;
     z-index: 2;
+    display: flex;
+    justify-content: center;
 }
 
 .form {
     width: 250px;
+    height: 300px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -30,11 +34,6 @@ body {
     background-image: url("../images/form_background.jpg");
     background-size: cover;
     border-radius: 5px;
-    margin: 10% 40%;
-}
-
-.signup {
-    margin-top: 5%;
 }
 
 .form__title {
@@ -97,13 +96,15 @@ body {
     height: 100%;
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     background-color: white;
     z-index: 0;
+    position: absolute;
 }
 
 .users__user {
-    width: 20%;
-    height: 100%;
+    width: 300px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -128,11 +129,55 @@ body {
     justify-content: center;
 }
 
-.post {
-    z-index: 1;
+.popup-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    position: absolute;
 }
 
+.profile {
+    z-index: 1;
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background-color: #efefefee;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 20%;
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow: scroll;
+}
 
+.posts {
+    z-index: 1;
+    position: fixed;
+    width: 400px;
+    height: 500px;
+    background-color: #efefefee;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow: scroll;
+    top: 60px;
+}
+
+.posts__post {
+    border-bottom: 1px solid #494949;
+    margin-top: 20px;
+}
+.posts__buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+}
 .display__none {
     display: none;
 }
