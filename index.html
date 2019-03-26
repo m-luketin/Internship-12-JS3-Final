@@ -3,51 +3,56 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/style.css">
     <title>Internship-12-JS3-Final</title>
 </head>
 
 <body>
-    <form action="" class="form signup">
-        <h2 class="form__title">Sign up</h2>
-        <span class="form__subtitle">USERNAME</span>
-        <input class="form__input" type="text"></input>
-        <span class="form__subtitle">E-MAIL</span>
-        <input class="form__input" type="text"></input>
-        <span class="form__subtitle">PASSWORD</span>
-        <input class="form__input" type="password"></input>
-        <span class="form__subtitle">REPEAT PASSWORD</span>
-        <input class="form__input" type="password"></input>
+    <div class="signup__wrapper">
+        <form class="form signup">
+            <h2 class="form__title">Sign up</h2>
+            <span class="form__subtitle">USERNAME</span>
+            <input class="form__input" id="signupUsername" type="text" required></input>
+            <span class="form__subtitle">E-MAIL</span>
+            <input class="form__input" id="email" type="text" required></input>
+            <span class="form__subtitle">PASSWORD</span>
+            <input class="form__input" id="signupPassword" type="password" required></input>
+            <span class="form__subtitle">REPEAT PASSWORD</span>
+            <input class="form__input" id="repeat" type="password" required></input>
+            
+            <div class="form__terms">
+                <input type="checkbox" name="" id="terms">
+                <p>By signing up i agree with <span>terms and conditions</span></p>
+            </div>
+            <div class="form__buttons">
+                <button type="button" id="signup" class="buttons__main">Sign up</button>
+                <button class="buttons__secondary">or <span>Log in</span></button>
+            </div>
+        </form>
+    </div>
+    <div class="login__wrapper">
+        <form action="" class="form login">
+            <h2 class="form__title">Log in</h2>
+            <span class="form__subtitle">USERNAME</span>
+            <input class="form__input"  id="loginUsername"type="text"></input>
+            <span class="form__subtitle">PASSWORD</span>
+            <input class="form__input" id="loginPassword" type="password"></input>
+            
+            <div class="form__buttons">
+                <button class="buttons__main" id="login">Log in</button>
+                <button class="buttons__secondary">or <span>Sign up</span></button>
+            </div>
+        </form>    
+    </div>
+        <main class="users">
+            
+        </main>
+        <section class="post">
 
-        <div class="form__terms">
-            <input type="checkbox" name="" id="">
-            <p>By signing up i agree with <span>terms and conditions</span></p>
-        </div>
-        <div class="form__buttons">
-            <button class="buttons__main">Sign up</button>
-            <button class="buttons__secondary">or <span>Log in</span></button>
-        </div>
-    </form>
-    <form action="" class="form login">
-        <h2 class="form__title">Log in</h2>
-        <span class="form__subtitle">USERNAME</span>
-        <input class="form__input" type="text"></input>
-        <span class="form__subtitle">PASSWORD</span>
-        <input class="form__input" type="password"></input>
-
-        <div class="form__buttons">
-            <button class="buttons__main">Log in</button>
-            <button class="buttons__secondary">or <span>Sign up</span></button>
-        </div>
-    </form>
-
-    <main class="users">
-
-    </main>
-
-</body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="./assets/js/script.js"></script>
-</html>
+        </section>
+    </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+    </html>
