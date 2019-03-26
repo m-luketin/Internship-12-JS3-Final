@@ -1,5 +1,14 @@
 "use strict";
 
+function ToggleVisibility(element){
+    element.toggleClass("display__none");
+}
+
+if(localStorage.length !== 0)
+{
+    ToggleVisibility($(".signup__wrapper"));
+}
+
 $("#signup, form").submit(function(event) {
     event.preventDefault();
 });
@@ -35,7 +44,9 @@ $("#signup").bind("click", function() {
     else
     {
         localStorage.setItem(username, password);
-        //open users
+        ToggleVisibility($("#users"));
+        ToggleVisibility($(".login__wrapper"));
+        ToggleVisibility($(".signup__wrapper"));
     }
 });
 
@@ -53,7 +64,8 @@ $("#login").bind("click", function() {
     }
     else 
     {
-        //open users
+        ToggleVisibility($("#users"));
+        ToggleVisibility($(".login__wrapper"));
     }
 });
 
@@ -75,16 +87,21 @@ let usersPromise = fetch("https://jsonplaceholder.typicode.com/users")
                                <span class="user__id"><b>ID</b>: #${user.id}</span><br>
                                <span class="user__name"><b>Name:</b> &nbsp;&nbsp;${user.name}</span><br>
                                <span class="user__mail"><b>e-mail:</b> &nbsp;${user.email}</span><br>
-                               <span class="user__city"><b>City:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.address.city}</span><br>`;
-        main.appendChild(childNode);
-
-        localStorage.setItem(user.username, "password");
+                               <span class="user__city"><b>City:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.address.city}</span><br>
+                               <button class="user__posts">POSTS</button>`;
+        main.append(childNode);
     });
 });
 
 
 
-    $(".user").bind("click", function() {
-        //open post
-    });
+$(".users__user").bind("click", function() {
+    let post = $(".post");
+    post.innerHTML = `<h2>${userNode.name}</h2><br>
+                         <span><b>ID</b>: #${user.username}</span><br>
+                         <span><b>Name:</b> &nbsp;&nbsp;${user.name}</span><br>
+                         <span"><b>e-mail:</b> &nbsp;${user.email}</span><br>
+                         <span><b>City:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.address.city}</span><br>`;
+    main.append(childNode);
+});
 
