@@ -1,10 +1,12 @@
 "use strict";
 
-$("#signup, form").submit(function(event) {
+$("#signup, form").submit(function(event) 
+{
     event.preventDefault();
 });
 
-function ToggleVisibility(element){
+function ToggleVisibility(element)
+{
     element.toggleClass("display__none");
 }
 
@@ -13,15 +15,18 @@ if(localStorage.length !== 0)
     ToggleVisibility($(".signup__wrapper"));
 }
 
-$("#loginSecondary").bind("click", function() {
+$("#loginSecondary").bind("click", function() 
+{
     ToggleVisibility($(".signup__wrapper"));
 });
 
-$("#signupSecondary").bind("click", function() {
+$("#signupSecondary").bind("click", function() 
+{
     ToggleVisibility($(".signup__wrapper"));
 });
 
-$("#login").bind("click", function() {    
+$("#login").bind("click", function() 
+{    
     let username = $("#loginUsername").val();
     let password = $("#loginPassword").val();
 
@@ -40,14 +45,14 @@ $("#login").bind("click", function() {
     }
 });
 
-$("#signup").bind("click", function() {    
+$("#signup").bind("click", function() 
+{    
     let username = $("#signupUsername").val();
     let password = $("#signupPassword").val();
     let email = $("#email").val();
     let repeatedPassword = $("#repeat").val();
-
-    let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
+    let emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; 
+    
     if(username.length < 5 || username.length > 10)
     {
         alert("Username needs to be between 5 and 10 characters!");
@@ -79,13 +84,17 @@ $("#signup").bind("click", function() {
 
 let users;
 fetch("https://jsonplaceholder.typicode.com/users")
-.then( data => {
+.then( data => 
+{
    return data.json();
 })
-.then( res => {
+.then( res => 
+{
     users = res;
     let main = $(".users");
-    users.forEach(function(user) {
+
+    users.forEach(function(user) 
+    {
         let childNode = document.createElement("div");
         childNode.className = "users__user";
         childNode.innerHTML = `<img src="./assets/images/profile_picture.jpg" class="user__picture" onclick="ViewProfile(${user.id})">
@@ -96,14 +105,32 @@ fetch("https://jsonplaceholder.typicode.com/users")
                                <span class="user__city"><b>City:</b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${user.address.city}</span><br>
                                <button class="user__posts" onclick="ViewPosts(${user.id})">POSTS</button>`;
         main.append(childNode);
-    });
-
+    });  
+    main.append(`<button class="posts__to-top display__none">Back to top</button>`);
     
+    let button = $(".posts__to-top");
+    window.addEventListener("scroll", function() {
+        if(window.scrollY > 100)
+        {
+            button.removeClass("display__none");
+        }
+        else
+        {
+            button.addClass("display__none");
+        }
+    });
+    
+    button.click( function() {
+        window.scrollTo({top: 0, left: 0, behavior: "smooth"});    
+    });
 });
 
-function ViewProfile(id) {
-    users.forEach(function(user) {
-        if(user.id === id) {
+function ViewProfile(id) 
+{
+    users.forEach(function(user) 
+    {
+        if(user.id === id) 
+        {
             $("#profile").append(`<br><br><br><br><br><br><br>
             <h2>Name:${user.name}</h2><br>
             <span><b>Username</b>: ${user.username}</span><br>
@@ -125,7 +152,8 @@ function ViewProfile(id) {
                 
         $("#profile").removeClass("display__none");
 
-        $(".profile-button").bind("click", function() {
+        $(".profile-button").bind("click", function() 
+        {
             $("#profile").addClass("display__none");
             $("#profile").empty();
         });
@@ -134,34 +162,100 @@ function ViewProfile(id) {
 
 
 let posts;
-function ViewPosts(id) {
+let postUserId;
+let childNode;
+function ViewPosts(id) 
+{
     fetch("https://jsonplaceholder.typicode.com/users/1/posts")
-    .then( data => {
+    .then( data => 
+    {
        return data.json();
     })
-    .then( res => {
+    .then( res => 
+    {
         posts = res;
         let container = $(".posts");
-        posts.forEach(function(post) {
-            let childNode = document.createElement("div");
+
+        posts.forEach(function(post) 
+        {
+            childNode = document.createElement("div");
             childNode.className = "posts__post";
-            if(post.userId === id) {
+            if(post.userId === id) 
+            {
                 childNode.innerHTML = `<span class="post__title"><b>Title</b>: ${post.title}</span><br>
                                        <span class="post__user-id"><b>User ID</b>: #${post.userId}</span><br>
                                        <span class="user__name"><b>ID:</b> ${post.id}</span><br>
-                                       <span class="post__body"><b>e-mail:</b>${post.body}</span><br><br>`; 
+                                       <span class="post__body"><b>Post:</b>${post.body}</span><br><br>`; 
                 container.append(childNode);
             }
         });
-        container.append(`<div class="posts__buttons"><button class="post__new">New post</button>
+
+        if(sessionStorage.getItem(id))
+        {
+            console.log(sessionStorage.getItem(id));
+            
+            let storedPost = (sessionStorage.getItem(id).replace('"', '').replace('"', '')).split("|");
+            console.log(storedPost);
+            childNode.innerHTML = `<span class="post__title"><b>Title</b>: ${storedPost[0]}</span><br>
+                                   <span class="post__user-id"><b>User ID</b>: #${id}</span><br>
+                                   <span class="user__name"><b>ID:</b> ${storedPost[2]}</span><br>
+                                   <span class="post__body"><b>Post:</b>${storedPost[1]}</span><br><br>`; 
+            container.append(childNode);
+        }
+
+        let numberRegex = /\d{1,2}$/;
+        let userIdHtml = $(".post__user-id").html();
+        postUserId = userIdHtml.match(numberRegex);
+
+        container.append(`<div class="posts__buttons">
+                          <button class="post__new" onclick="NewPost(${postUserId})">New post</button>
                           <button class="post__close">Close</button></div>`);
         $("#posts").removeClass("display__none");
         
-        $(".post__close").bind("click", function() {
+        $(".post__close").bind("click", function() 
+        {
             $("#posts").addClass("display__none");
             $("#posts").empty();
         });
     });
 }
 
+function NewPost()
+{
+    ToggleVisibility($(".new-post"));
+}
 
+function SubmitPost() 
+{
+    let newPostTitle = $(".new-post__title").val();
+    let newPostBody = $(".new-post__body").val();
+    console.log(newPostTitle);
+    console.log(newPostBody);
+    fetch('https://jsonplaceholder.typicode.com/posts', 
+    {
+        method: 'POST',
+        body: JSON.stringify(
+        {
+           title: newPostTitle,
+           body: newPostBody,
+           userId: postUserId[0]
+        }),
+        headers: 
+        {
+          "Content-type": "application/json; charset=UTF-8"
+        }
+    })
+    .then(response => response.json())
+    .then(json =>
+    {
+        console.log(json);
+        let value = `${json.title} | ${json.body} | ${json.id}`;
+        sessionStorage.setItem(json.userId, JSON.stringify(value));
+        $(".post__new").remove();
+        $(".post__close").remove();
+        ViewPosts(json.userId);
+    });
+    $(".new-post__title").val("");
+    $(".new-post__body").val("");
+    NewPost();
+}

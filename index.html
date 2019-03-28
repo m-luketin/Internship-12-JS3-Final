@@ -23,7 +23,7 @@
             <input class="form__input" id="repeat" type="password" required></input>
             
             <div class="form__terms">
-                <input type="checkbox" name="" id="terms">
+                <input type="checkbox" id="terms">
                 <p>By signing up i agree with <span>terms and conditions</span></p>
             </div>
             <div class="form__buttons">
@@ -47,7 +47,7 @@
         </form>    
     </div>
         <main class="users display__none" id="users">
-            
+
         </main>
         <div class="popup-container">
 
@@ -57,6 +57,15 @@
             <section class="posts display__none" id="posts">
                 
             </section>
+            <form class="new-post display__none">
+                <h2>New post</h2><br><br>
+                <span>Title:</span>
+                <input type="text" class="new-post__title" required><br><br>
+                <span>Body:</span>
+                <textarea type="text" class="new-post__body" cols="50" rows="30" required></textarea>
+                <button class="new-post__submit" onclick="SubmitPost()">Submit post</button>
+                <button class="new-post__close" onclick="NewPost()">Close</button>
+            </form>
         </div>
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
