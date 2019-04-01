@@ -31,9 +31,19 @@ body {
     flex-direction: column;
     justify-content: center;
     padding: 25px;
-    background-image: url("../images/form_background.jpg");
     background-size: cover;
-    border-radius: 5px;
+    border-radius: 3px;
+    border: 1px solid #333333;
+    border-left: transparent;
+}
+
+.form__fill {
+    background-image: url("../images/form_background.jpg");
+    width: 200px;
+    height: 350px;
+    border: 1px solid #333333;
+    border-right: transparent;
+    border-radius: 3px;
 }
 
 .form__title {
@@ -115,7 +125,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid grey;
+    border: 1px solid #333333;
     border-radius: 10px;
     margin: 20px;
     padding: 14.5px;
@@ -192,4 +202,20 @@ body {
 
 .display__none {
     display: none;
+}
+
+.posts__buttons button, .new-post__buttons  button {
+    width: 100px;
+    height: 50px;
+}
+
+.new-post__buttons {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+}
+
+button {    
+    border: 1px solid #333333;
+    border-radius: 5px;
 }

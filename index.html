@@ -11,6 +11,7 @@
 
 <body>
     <div class="signup__wrapper">
+        <div class="form__fill"></div>
         <form class="form signup">
             <h2 class="form__title">Sign up</h2>
             <span class="form__subtitle">USERNAME</span>
@@ -33,6 +34,7 @@
         </form>
     </div>
     <div class="login__wrapper">
+        <div class="form__fill"></div>
         <form action="" class="form login">
             <h2 class="form__title">Log in</h2>
             <span class="form__subtitle">USERNAME</span>
@@ -63,8 +65,10 @@
                 <input type="text" class="new-post__title" required><br><br>
                 <span>Body:</span>
                 <textarea type="text" class="new-post__body" cols="50" rows="30" required></textarea>
-                <button class="new-post__submit" onclick="SubmitPost()">Submit post</button>
-                <button class="new-post__close" onclick="NewPost()">Close</button>
+                <div class="new-post__buttons">
+                    <button class="new-post__submit" onclick="SubmitPost()">Submit post</button>
+                    <button class="new-post__close" onclick="NewPost()">Close</button>
+                </div>
             </form>
         </div>
     </body>
