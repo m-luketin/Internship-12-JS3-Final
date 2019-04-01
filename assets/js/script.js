@@ -29,10 +29,18 @@ $("#login").bind("click", function()
 {    
     let username = $("#loginUsername").val();
     let password = $("#loginPassword").val();
-
-    if(!localStorage.getItem(username))
+    if(username === "")
+    {
+        alert("Please enter username!");
+        return;
+    }
+    else if(!localStorage.getItem(username))
     {
         alert("User does not exist!");
+    }
+    else if(password === "")
+    {
+        alert("Please enter password!");
     }
     else if(localStorage.getItem(username) !== password)
     {
@@ -227,6 +235,17 @@ function NewPost()
 
 function SubmitPost() 
 {
+    if($(".new-post__title").val() === "")
+    {
+        alert("Title is empty!");
+        return;
+    }
+    else if($(".new-post__body").val() === "")
+    {
+        alert("Body is empty!");
+        return;
+    }
+
     let newPostTitle = $(".new-post__title").val();
     let newPostBody = $(".new-post__body").val();
     console.log(newPostTitle);
